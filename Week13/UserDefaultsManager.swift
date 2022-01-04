@@ -15,5 +15,14 @@ class UserDefaultsManager {
         UserDefaults.standard.setValue(value, forKey: key)
         UserDefaults.standard.synchronize()
     }
+    
+    public func saveBooleandData(value: Bool, key: String) {
+        UserDefaults.standard.setValue(value, forKey: key)
+        UserDefaults.standard.synchronize()
+    }
+    
+    public func returnData(key: String) -> Any? {
+      return UserDefaults.standard.value(forKey: key)
+    }
 }
  

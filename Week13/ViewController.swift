@@ -36,7 +36,6 @@ class ViewController: UIViewController {
         .build()
     private let signUpButton = UIButtonBuilder().title("Sign Up").build()
     private let signInButton = UIButtonBuilder().title("Sign In").build()
-   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +87,7 @@ extension ViewController {
     
     @objc
     func signUpButtonTapped() {
+        
        let userBuilder = UserBuilder()
         
         userBuilder.setName(name: nameTextField.text!)
@@ -98,6 +98,9 @@ extension ViewController {
         
         let user = userBuilder.buildObject()
         print(user.printDescription())
-
+        
+        UserDefaultsManager.shared.saveStringData(value: user.username, key: "username")
+        UserDefaultsManager.shared.saveStringData(value: user.password, key: "password")
+       
     }
 }

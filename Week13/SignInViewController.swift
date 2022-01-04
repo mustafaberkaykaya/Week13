@@ -10,6 +10,10 @@ import TinyConstraints
 import MobilliumBuilders
 
 class SignInViewController: UIViewController {
+    
+    var chosenUsername: String = ""
+    var chosenPassword: String = ""
+    
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     private let mainStackView = UIStackViewBuilder().axis(.vertical).spacing(20).build()
@@ -28,7 +32,6 @@ class SignInViewController: UIViewController {
         .build()
     private let signInButton = UIButtonBuilder().title("Sign In").build()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,10 +39,11 @@ class SignInViewController: UIViewController {
         print("calisti")
         view.backgroundColor = .white
         addSubViews()
+        getData()
+        signInButton.addTarget(self, action: #selector(signIn), for: .touchUpInside)
     }
-    
-
 }
+
 extension SignInViewController {
     private func addSubViews() {
         addScrollView()
@@ -62,9 +66,34 @@ extension SignInViewController {
         mainStackView.bottomToSuperview().constant = -25
         
         mainStackView.addArrangedSubview(usernameTextField)
-        mainStackView.addArrangedSubview(emailTextField)
         mainStackView.addArrangedSubview(passwordTextField)
         mainStackView.addArrangedSubview(signInButton)
         
+    }
+    
+    private func getData() {
+        
+    
+        if let username = UserDefaultsManager.shared.returnData(key: "username") as? String {
+            chosenUsername = username
+        }
+        
+        if let password = UserDefaultsManager.shared.returnData(key: "password") as? String {
+           chosenPassword = password
+        }
+       
+        
+    }
+    
+    @objc
+    func signIn() {
+        if usernameTextField.text == chosenUsername && passwordTextField.text == chosenPassword {
+            print("Başarılı")
+        } else {
+            let alert = UIAlertController(title: "Error", message: "Password or username is incorrect", preferredStyle: UIAlertController.Style.alert)
+            let okButton = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil)
+            alert.addAction(okButton)
+            present(alert, animated: true, completion: nil)
+        }
     }
 }
