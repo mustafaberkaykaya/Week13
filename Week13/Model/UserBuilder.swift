@@ -35,7 +35,10 @@ class UserBuilder {
     }
     
     func buildObject() -> User {
-        return User(name: self.name, surname: self.surname, email: self.email, password: self.password, username: self.username)
+        return User(name: self.name,
+                    surname: self.surname,
+                    email: self.email,
+                    password: self.password,
+                    username: self.username)
     }
-    
 }

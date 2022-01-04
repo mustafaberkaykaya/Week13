@@ -16,9 +16,7 @@ class HomePageViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .green
-        
         view.addSubview(welcomeLabel)
         welcomeLabel.centerInSuperview()
     }
-    
 }

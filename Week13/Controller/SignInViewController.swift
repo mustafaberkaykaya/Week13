@@ -36,8 +36,6 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        print("calisti")
         view.backgroundColor = .white
         addSubViews()
         getData()
@@ -84,7 +82,6 @@ extension SignInViewController {
         if let password = UserDefaultsManager.shared.returnData(key: "password") as? String {
            chosenPassword = password
         }
-       
     }
     
     @objc

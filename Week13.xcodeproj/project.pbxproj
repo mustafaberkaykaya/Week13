@@ -91,11 +91,11 @@
 				6AE89E172784BD960003B4A6 /* Controller */,
 				6AE89E162784BD420003B4A6 /* Model */,
 				6A394808277DE6F3003DF57B /* AppDelegate.swift */,
+				6AD7A80E2780FD78005D5AD0 /* UserDefaultsManager.swift */,
 				6A39480A277DE6F3003DF57B /* SceneDelegate.swift */,
 				6A394811277DE6F5003DF57B /* Assets.xcassets */,
 				6A394813277DE6F5003DF57B /* LaunchScreen.storyboard */,
 				6A394816277DE6F5003DF57B /* Info.plist */,
-				6AD7A80E2780FD78005D5AD0 /* UserDefaultsManager.swift */,
 			);
 			path = Week13;
 			sourceTree = "<group>";

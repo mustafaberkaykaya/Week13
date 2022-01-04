@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+// swiftlint:disable all
 class UserDefaultsManager {
     private init () {}
     static let shared = UserDefaultsManager()
@@ -26,4 +26,4 @@ class UserDefaultsManager {
       return UserDefaults.standard.value(forKey: key)
     }
 }
- 
+// swiftlint:enable all
