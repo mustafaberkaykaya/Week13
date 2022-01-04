@@ -43,7 +43,8 @@ class ViewController: UIViewController {
         addSubViews()
         
         signInButton.addTarget(self, action: #selector(pushNewVC), for: .touchUpInside)
-
+        signUpButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+        
     }
     
 }
@@ -82,5 +83,13 @@ extension ViewController {
     func pushNewVC() {
         let nextVC = SignInViewController()
         self.present(nextVC, animated: true, completion: nil)
+
+    }
+    
+    @objc
+    func signUpButtonTapped() {
+        let user = User(name: usernameTextField.text!, surname: surNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, username: usernameTextField.text!)
+        print(user.printDescription())
+
     }
 }
