@@ -11,7 +11,7 @@ class UserDefaultsManager {
     private init () {}
     static let shared = UserDefaultsManager()
     
-    public func saveStringData(value:String, key:String) {
+    public func saveStringData(value: String, key: String) {
         UserDefaults.standard.setValue(value, forKey: key)
         UserDefaults.standard.synchronize()
     }
