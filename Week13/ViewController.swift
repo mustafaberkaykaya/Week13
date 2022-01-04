@@ -88,7 +88,15 @@ extension ViewController {
     
     @objc
     func signUpButtonTapped() {
-        let user = User(name: usernameTextField.text!, surname: surNameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, username: usernameTextField.text!)
+       let userBuilder = UserBuilder()
+        
+        userBuilder.setName(name: nameTextField.text!)
+        userBuilder.setEmail(email: emailTextField.text!)
+        userBuilder.setSurname(surname: surNameTextField.text!)
+        userBuilder.setPassword(password: passwordTextField.text!)
+        userBuilder.setUsername(username: usernameTextField.text!)
+        
+        let user = userBuilder.buildObject()
         print(user.printDescription())
 
     }
