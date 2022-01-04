@@ -13,6 +13,7 @@ class SignInViewController: UIViewController {
     
     var chosenUsername: String = ""
     var chosenPassword: String = ""
+    var chosenEmail: String = ""
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
@@ -66,6 +67,7 @@ extension SignInViewController {
         mainStackView.bottomToSuperview().constant = -25
         
         mainStackView.addArrangedSubview(usernameTextField)
+        mainStackView.addArrangedSubview(emailTextField)
         mainStackView.addArrangedSubview(passwordTextField)
         mainStackView.addArrangedSubview(signInButton)
         
@@ -73,24 +75,28 @@ extension SignInViewController {
     
     private func getData() {
         
-    
         if let username = UserDefaultsManager.shared.returnData(key: "username") as? String {
             chosenUsername = username
         }
-        
+        if let email = UserDefaultsManager.shared.returnData(key: "email") as? String {
+           chosenEmail = email
+        }
         if let password = UserDefaultsManager.shared.returnData(key: "password") as? String {
            chosenPassword = password
         }
        
-        
     }
     
     @objc
     func signIn() {
-        if usernameTextField.text == chosenUsername && passwordTextField.text == chosenPassword {
+        if usernameTextField.text == chosenUsername && passwordTextField.text == chosenPassword && chosenEmail == emailTextField.text {
             print("Başarılı")
+            let homePage = HomePageViewController()
+            present(homePage, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "Error", message: "Password or username is incorrect", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "Error",
+                                          message: "Password or username or email is incorrect",
+                                          preferredStyle: UIAlertController.Style.alert)
             let okButton = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil)
             alert.addAction(okButton)
             present(alert, animated: true, completion: nil)

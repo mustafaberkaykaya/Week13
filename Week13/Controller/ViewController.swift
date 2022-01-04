@@ -53,7 +53,12 @@ extension ViewController {
         addScrollView()
         addMainStackView()
     }
-    
+    private func makeAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil)
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
+    }
     private func addScrollView() {
         view.addSubview(scrollView)
         scrollView.edgesToSuperview(usingSafeArea: true)
@@ -87,20 +92,30 @@ extension ViewController {
     
     @objc
     func signUpButtonTapped() {
-        
-       let userBuilder = UserBuilder()
-        
-        userBuilder.setName(name: nameTextField.text!)
-        userBuilder.setEmail(email: emailTextField.text!)
-        userBuilder.setSurname(surname: surNameTextField.text!)
-        userBuilder.setPassword(password: passwordTextField.text!)
-        userBuilder.setUsername(username: usernameTextField.text!)
-        
-        let user = userBuilder.buildObject()
-        print(user.printDescription())
-        
-        UserDefaultsManager.shared.saveStringData(value: user.username, key: "username")
-        UserDefaultsManager.shared.saveStringData(value: user.password, key: "password")
-       
+        // swiftlint:disable all
+        if nameTextField.text != "" && surNameTextField.text != ""
+            && emailTextField.text != "" && usernameTextField.text != ""
+            && passwordTextField.text != "" {
+            // swiftlint:enable all
+            let userBuilder = UserBuilder()
+     
+             userBuilder.setName(name: nameTextField.text!)
+             userBuilder.setEmail(email: emailTextField.text!)
+             userBuilder.setSurname(surname: surNameTextField.text!)
+             userBuilder.setPassword(password: passwordTextField.text!)
+             userBuilder.setUsername(username: usernameTextField.text!)
+             
+             let user = userBuilder.buildObject()
+             print(user.printDescription())
+             
+             UserDefaultsManager.shared.saveStringData(value: user.username, key: "username")
+             UserDefaultsManager.shared.saveStringData(value: user.email, key: "email")
+             UserDefaultsManager.shared.saveStringData(value: user.password, key: "password")
+            
+            makeAlert(title: "Succes!", message: "You have successfully registered")
+        } else {
+          makeAlert(title: "Error", message: "Please make sure you fill in the required fields.")
+        }
+     
     }
 }
